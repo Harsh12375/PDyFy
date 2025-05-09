@@ -1,0 +1,14 @@
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+sqlalchemy>=2.0.0
+aiosqlite>=0.19.0
+langchain>=0.0.329
+llama-index>=0.8.54
+pydantic>=2.4.2
+pypdf>=3.17.1
+python-jose>=3.3.0
+langchain-google-genai>=0.0.3
+chromadb>=0.4.22
+pydantic-settings>=2.0.3 
+langchain-community>=0.0.10 
