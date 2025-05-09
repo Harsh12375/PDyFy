@@ -1,155 +1,188 @@
-# AI Planet - FullStack Intern Assignment
+# PDF Chat Assistant
 
-This project consists of a **FastAPI backend** and **Next.js frontend** that allows users to upload PDF documents and ask questions about their content using AI.
+A powerful PDF document interaction system that allows users to chat with their PDF documents using advanced language models and vector search capabilities. This system combines the power of Next.js for the frontend, FastAPI for the backend, and leverages AWS services for robust document management and storage.
 
-## Features
+## 🌟 Features
 
-### PDF Upload & Processing
+- **Interactive PDF Chat**: Have natural conversations with your PDF documents using advanced language models
+- **Multiple Document Support**: Upload and manage multiple PDF files simultaneously
+- **Real-time Chat Interface**: Modern, responsive chat interface built with Next.js and TailwindCSS
+- **Vector Search**: Efficient document search using vector embeddings for accurate information retrieval
+- **Secure Storage**: Document storage and management using AWS S3 and DynamoDB
+- **Cross-Platform**: Works seamlessly on any modern web browser
+- **Document Processing**: Advanced PDF processing with PyMuPDF
+- **Chat History**: Persistent chat history for each document
+- **Secure File Handling**: Built-in validation and secure file processing
+- **Responsive Design**: Mobile-friendly interface that works across all devices
 
-- Upload PDF documents through the UI
-- Automatic text extraction using PyMuPDF
-- Document storage and management
-- Progress tracking for document processing
+## 🏗️ Technology Stack
 
-### Q&A Capabilities
+### Backend (FastAPI)
+- FastAPI for high-performance API development
+- SQLAlchemy for robust database ORM and management
+- LangChain for sophisticated document processing and chat capabilities
+- ChromaDB for efficient vector storage and similarity search
+- PyMuPDF for comprehensive PDF processing
+- AWS SDK for cloud integration
+- SQLite for local development database
+- Pydantic for data validation
 
-- Ask questions about uploaded documents
-- AI-powered responses using Google's Gemini model
-- Context-aware answers based on document content
+### Frontend (Next.js)
+- Next.js 15.0.2 for server-side rendering and optimal performance
+- React 19.0.0 for dynamic UI components
+- TailwindCSS for modern, responsive styling
+- AWS SDK for seamless S3 and DynamoDB integration
+- Axios for reliable API communication
+- TypeScript for type-safe development
+- Custom chat interface components
+- Responsive file upload system
 
-### Example Files for Testing
+## 🚀 Getting Started
 
-- [**Sample PDF Document 1**](/ai-planet//Example%20Files%20For%20Test/example.pdf)
-- [**Sample PDF Document 2**](/ai-planet//Example%20Files%20For%20Test/bitcoin-whitepaper.pdf)
-
-## Setup & Running
+### Prerequisites
+- Python 3.11 or higher
+- Node.js 18 or higher
+- npm or yarn
+- AWS account with appropriate permissions
+- Git for version control
 
 ### Backend Setup
-
-1. Navigate to the backend directory:
+1. Clone the repository and navigate to the backend directory:
    ```bash
    cd fastapi-backend
    ```
+
 2. Create and activate a virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-3. Install dependencies:
+
+3. Install Python dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-4. Replace Gemini Key in the `.env` file:
-   ```plaintext
-   GOOGLE_API_KEY=your_api_key_here
+
+4. Configure environment variables in `.env`:
+   ```env
+   APP_NAME=PDF Chat Assistant
+   AWS_ACCESS_KEY_ID=your_access_key
+   AWS_SECRET_ACCESS_KEY=your_secret_key
+   AWS_REGION=your_region
+   DATABASE_URL=sqlite:///sql_app.db
    ```
+
 5. Start the FastAPI server:
    ```bash
-   uvicorn app.main:app --reload
+   uvicorn app.main:app --reload --port 8000
    ```
 
 ### Frontend Setup
-
 1. Navigate to the frontend directory:
    ```bash
    cd ai-planet
    ```
-2. Install dependencies:
+
+2. Install Node.js dependencies:
    ```bash
    npm install
    ```
-3. Start the development server:
+
+3. Configure environment variables in `.env.local`:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:8000
+   NEXT_PUBLIC_AWS_REGION=your_region
+   AWS_ACCESS_KEY_ID=your_access_key
+   AWS_SECRET_ACCESS_KEY=your_secret_key
+   ```
+
+4. Start the development server:
    ```bash
    npm run dev
    ```
-4. The application will be available at:
-   - **Frontend**: [http://localhost:3000](http://localhost:3000)
-   - **Backend API**: [http://localhost:8000](http://localhost:8000)
 
-## Project Structure
+## 📚 API Documentation
 
-### Backend (`fastapi-backend`)
+Comprehensive API documentation is available at http://localhost:8000/docs when the backend server is running.
 
-- **app/** - FastAPI application
-  - **api/** - API routes and endpoints
-  - **services/** - Main Logic
-    - **document_processor.py** - PDF processing
-    - **qa_service.py** - Q&A functionality
-  - **models/** - Database models
-  - **schemas/** - Pydantic schemas
+### Key Endpoints:
+- `POST /api/v1/documents/upload`: Upload new PDF documents
+- `POST /api/v1/documents/{document_id}/chat`: Interact with documents through chat
+- `GET /api/v1/documents`: Retrieve all uploaded documents
+- `GET /api/v1/documents/{document_id}`: Get specific document details
+- `GET /api/v1/documents/{document_id}/chat-history`: Retrieve chat history
 
-### Frontend (`ai-planet`)
+## 🔧 Configuration
 
-- **app/** - Next.js application
-  - **page.tsx** - Main UI component
-  - **types/** - TypeScript interfaces
+### AWS Setup
+1. Create an S3 bucket for document storage
+2. Set up a DynamoDB table for metadata
+3. Configure IAM user with appropriate permissions
+4. Update environment variables with AWS credentials
 
-## Technologies Used
+### Security Considerations
+- Implement proper CORS settings in `fastapi-backend/app/main.py`
+- Use secure environment variables
+- Follow AWS security best practices
+- Implement file type validation
+- Set up proper AWS IAM roles and permissions
 
-### Backend
+## 🔍 Project Structure
+```
+├── ai-planet/                # Frontend Next.js application
+│   ├── app/                  # Next.js app directory
+│   ├── components/           # React components
+│   └── libs/                 # Utility functions and AWS configs
+└── fastapi-backend/         # Backend FastAPI application
+    ├── app/                 # Main application code
+    ├── models/             # Database models
+    ├── schemas/            # Pydantic schemas
+    └── services/           # Business logic services
+```
 
-- FastAPI
-- SQLAlchemy
-- Google Gemini AI
-- PyMuPDF
-- SQLite
+## 🤝 Contributing
 
-### Frontend
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- Next.js
-- TypeScript
-- Tailwind CSS
-- React
+### Development Guidelines
+- Follow PEP 8 style guide for Python code
+- Use TypeScript for frontend development
+- Write tests for new features
+- Update documentation as needed
 
-## API Endpoints
+## 📄 License
 
-### Document Upload
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-- **Endpoint**: `POST /api/v1/documents/upload/`
-- **Input**:
-  - `file`: File (PDF only)
-- **Output**:
-  - `id`: number
-  - `filename`: string
-  - `file_path`: string
-  - `upload_date`: string
-  - `processed`: Boolean
+## 👏 Acknowledgments
 
-### Document Processing
+- FastAPI for the efficient Python web framework
+- Next.js team for the powerful React framework
+- LangChain for document processing capabilities
+- AWS for reliable cloud infrastructure
+- All contributors who have helped improve this project
 
-- **Endpoint**: `POST /api/v1/documents/question/`
-- **Input**:
-  - `question`: string
-  - `document_id`: number
-- **Output**:
-  - `answer`: string
-  - `confidence`: number
-  - `source_document`: string
+## 🐛 Known Issues & Roadmap
 
-## Application Architecture
+### Current Issues
+- [Create an issue in the repository]
 
-### Backend Architecture (FastAPI)
+### Future Improvements
+- Implementation of real-time collaboration features
+- Support for additional document formats
+- Enhanced security features
+- Advanced document parsing capabilities
 
-1. **API Layer (`/app/api/v1/endpoints/`)**
+## 📧 Contact & Support
 
-   - Handles HTTP requests
-   - Input validation
-   - Route definitions
-   - Response formatting
+For questions, support, or contributions:
+- Open an issue in the GitHub repository
+- Contact the maintainers
+- Join our community discussions
 
-2. **Service Layer (`/app/services/`)**
-
-   - `document_processor.py`: Handles PDF processing
-   - `qa_service.py`: Manages Q&A functionality
-   - Integration with external services (Gemini AI)
-
-3. **Data Layer**
-
-   - **Models (`/app/models/`)**: SQLAlchemy definitions
-   - **Schemas (`/app/schemas/`)**: Pydantic models for validation
-   - **Database** (`/app/database.py`): SQLite configuration
-
-4. **Configuration**
-   - Environment variables management
-   - Application settings
-   - Database configurations
+---
+Made with ❤️ by Harsh
